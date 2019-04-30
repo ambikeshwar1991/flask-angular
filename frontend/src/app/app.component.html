@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="my-5">
+        <h4>Fill all the field to get fetch data</h4>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Ticker ID</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" [(ngModel)]="tickerId" placeholder="Enter ticker id">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Bank Name</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" [(ngModel)]="bankName" placeholder="Enter bank name">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Start Date</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" [(ngModel)]="startDate" placeholder="YYYY-MM-DD">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">End Date</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" [(ngModel)]="endDate" placeholder="YYYY-MM-DD">
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-8 text-right">
+            <button (click)="getData()" [disabled]="!(tickerId && bankName && startDate && endDate)" type="button"
+              class="btn btn-primary mb-2 ">Submit</button>
+          </div>
+        </div>
+      </div>
+      <table class="table table-striped table-bordered small">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Date</th>
+            <th scope="col">Shareholding</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="tableData.length == 0">
+            <td colspan="3">No Data Found</td>
+          </tr>
+          <tr *ngFor="let dt of tableData; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ dt.date }}</td>
+            <td>{{ dt.shareholding }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
