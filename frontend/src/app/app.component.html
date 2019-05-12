@@ -34,7 +34,23 @@
           </div>
         </div>
       </div>
-      <table class="table table-striped table-bordered small">
+      <div tyle="width: 50%" *ngIf="chart1">
+  	<canvas id="canvas" height="40" width="24">{{ chart1 }}</canvas>
+      </div>
+
+      <div *ngIf="chart2">
+        <canvas id="canvas1" height="45" width="24">{{ chart2 }}</canvas>
+      </div>
+
+      <div *ngIf="chart2">
+        <canvas id="canvas2" height="45" width="24">{{ chart3 }}</canvas>
+      </div>
+
+      <div tyle="width: 50%" *ngIf="chart3">
+        <canvas id="canvas3" height="45" width="24">{{ chart4 }}</canvas>
+      </div>
+
+<!--      <table class="table table-striped table-bordered small">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -52,7 +68,7 @@
             <td>{{ dt.shareholding }}</td>
           </tr>
         </tbody>
-      </table>
+</table> -->
     </div>
   </div>
 </div>

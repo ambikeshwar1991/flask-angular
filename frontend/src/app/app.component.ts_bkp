@@ -1,0 +1,65 @@
+import { Component, OnInit } from '@angular/core';
+import { Chart } from 'chart.js';
+import { DataService } from './data.service';
+import { Data } from './Data';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  tickerId: string;
+  bankName: string;
+  startDate: string;
+  endDate: string;
+  tableData = [];
+  data: Data[];
+  chart1 = [];
+  chart2 = [];
+  date = [];
+  shareholding = [];
+
+  constructor(private _data: DataService) {
+  }
+
+  getData() {
+  this.chart = [];
+  this.shareholding = [];
+  this.date = [];
+    this._data.list(this.tickerId, this.bankName, this.startDate, this.endDate).subscribe((res: Data[]) => {
+    //this.tableData = res.result;
+       console.log(res);
+    res.forEach(y => {
+        this.date.push(y.date);
+        this.shareholding.push(y.shareholding);
+	});
+	this.chart1 = new Chart('canvas', {
+        type: 'line',
+        data: {
+          labels: this.date,
+          datasets: [
+            {
+              data: this.shareholding,
+              borderColor: '#3cba9f',
+              fill: false
+            }
+          ]
+        },
+        options: {
+          legend: {
+            display: false
+          },
+          scales: {
+            xAxes: [{
+              display: true
+            }],
+            yAxes: [{
+              display: true
+            }],
+          }
+        }
+      });
+      });
+  }
+}
