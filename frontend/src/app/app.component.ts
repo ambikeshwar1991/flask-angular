@@ -373,7 +373,7 @@ this.date = [];
           labels: this.date,
           datasets: [
             {
-              label: 'JPM',
+              label: 'UBS',
 	      data: this.shareholding,
               borderColor: '#3cba9f',
               fill: false
@@ -407,7 +407,7 @@ this.date = [];
           labels: this.date,
           datasets: [
             {
-              label: 'JPM',
+              label: 'BNP',
 	      data: this.shareholding,
               borderColor: '#3cba9f',
               fill: false
