@@ -41,72 +41,12 @@
           </div>
         </div>
       </div>
-      <div style="width:1000px" *ngIf="chart1">
-        <canvas id="canvas" height="300" width="1000">{{ chart1 }} [options]="lineChartOptions"</canvas>
-      </div>
-
-      <div style="width:1000px" *ngIf="chart2">
-        <canvas id="canvas1" height="300" width="1000">{{ chart2 }}</canvas>
-      </div>
-
-      <div style="width:1000px" *ngIf="chart3">
-        <canvas id="canvas2" height="300" width="1000">{{ chart3 }}</canvas>
-      </div>
-
-      <div style="width:1000px" *ngIf="chart4">
-        <canvas id="canvas3" height="300" width="1000">{{ chart4 }}</canvas>
-      </div>
-
-      <div style="width:1000px" *ngIf="chart5">
-        <canvas id="canvas4" height="300" width="1000">{{ chart5 }}</canvas>
-      </div>
-
-      <div style="width:1000px" *ngIf="chart6">
-        <canvas id="canvas5" height="300" width="1000">{{ chart6 }}</canvas>
-      </div>
-
-      <div style="width:1000px" *ngIf="chart7">
-        <canvas id="canvas6" height="300" width="1000">{{ chart7 }}</canvas>
-      </div>
-
-      <div style="width:1000px" *ngIf="chart8">
-        <canvas id="canvas7" height="300" width="1000">{{ chart8 }}</canvas>
-      </div>
-
-      <div style="width:1000px" *ngIf="chart9">
-        <canvas id="canvas8" height="300" width="1000">{{ chart9 }}</canvas>
-      </div>
-
-      <div style="width:1000px" *ngIf="chart10">
-        <canvas id="canvas9" height="300" width="1000">{{ chart10 }}</canvas>
-      </div>
-
-      <div style="width:1000px" *ngIf="chart11">
-        <canvas id="canvas10" height="300" width="1000">{{ chart11 }}</canvas>
-      </div>
-
-
-
-
-      <!--      <table class="table table-striped table-bordered small">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Date</th>
-            <th scope="col">Shareholding</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngIf="tableData.length == 0">
-            <td colspan="3">No Data Found</td>
-          </tr>
-          <tr *ngFor="let dt of tableData; let i = index">
-            <th scope="row">{{ i + 1 }}</th>
-            <td>{{ dt.date }}</td>
-            <td>{{ dt.shareholding }}</td>
-          </tr>
-        </tbody>
-</table> -->
+      <ng-container *ngFor="let bank of banks;let i = index">
+        <div style="width:1000px">
+          <p>{{ bank }}</p>
+          <canvas id="canvas_{{ i }}" height="300" width="1000">{{ charts[i] }}</canvas>
+        </div>
+      </ng-container>
     </div>
   </div>
 </div>
