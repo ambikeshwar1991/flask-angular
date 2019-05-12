@@ -94,7 +94,7 @@ def getPayLoad():
                     "txtSelPartID": ""}
         return payload
 
-@retry(Exception, tries=2)
+@retry(Exception, tries=3)
 def getDataFromHkExchange(date, stockCode, ccassParticipantId, results, payload):
     results[ccassParticipantId][date] = {}
     payload["txtShareholdingDate"] = date
