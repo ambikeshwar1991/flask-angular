@@ -2,6 +2,7 @@
 @Author : Ambikeshwar
 """
 import requests
+import copy
 from utils import participantList, participant, URL
 from utils.utils import Utils
 from queue import Queue
@@ -21,6 +22,7 @@ def putQueue(bankName, startTime, endTime):
             q.put((stockId, day))
 
 def crawlThread(tickerID, bankName, startTime, endTime):
+    global results
     putQueue(bankName, startTime, endTime)
     payload = getPayLoad()
     for stockId in participant[bankName]:
@@ -29,6 +31,9 @@ def crawlThread(tickerID, bankName, startTime, endTime):
             process.setDaemon(True)
             process.start()
     q.join()
+    resultsOut = copy.deepcopy(results)
+    results = {}
+    return resultsOut
 
 def crawl(q, stockCode, results, payload):
     while not q.empty():
