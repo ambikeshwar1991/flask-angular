@@ -61,14 +61,19 @@ export class AppComponent {
     this.chart1 = [];
     this.shareholding = [];
     this.date = [];
-    this._data.list(this.tickerId, this.bankName, this.dateToString(this.startDate), this.dateToString(this.endDate)).subscribe(result => {
+    this._data.list(this.tickerId, this.dateToString(this.startDate), this.dateToString(this.endDate)).subscribe(result => {
       result[0].HSBC.forEach(y => {
         this.date.push(y.date);
         this.shareholding.push(y.shareholding);
       });
-      this.chart1 = new Chart('canvas', {
+      result[0].HSBC.forEach(y => {
+        this.date.push(y.date);
+        this.shareholding.push(y.shareholding);
+        console.log("SC");
+        console.log(this.shareholding);
+      });
+      this.chart2 = new Chart('canvas', {
         type: 'line',
-        animationEnabled: true,
         data: {
           labels: this.date,
           datasets: [
@@ -76,31 +81,20 @@ export class AppComponent {
               label: 'HSBC',
               data: this.shareholding,
               borderColor: '#3cba9f',
-              fill: false,
-              type: 'line',
-              pointRadius: 0,
-              borderWidth: 2
+              fill: false
             }
           ]
         },
         options: {
-          responsive: true,
           legend: {
             display: true
           },
           scales: {
             xAxes: [{
-              display: true,
-              ticks: {
-                source: 'data',
-                autoSkip: true
-              }
+              display: true
             }],
             yAxes: [{
-              scaleLabel: {
-                display: true,
-                labelString: 'Shareholding'
-              }
+              display: true
             }],
           }
         }

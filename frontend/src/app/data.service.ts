@@ -16,9 +16,9 @@ export class DataService {
   /**
    * Get data in a list
    */
-  list(tickerId: string, bankName: string, startDate: string, endDate: string): Observable<any> {
+  list(tickerId: string, startDate: string, endDate: string): Observable<any> {
     return this._http.get<any[]>(this.API_URL + this.API_ENDPOINT +
-      `${tickerId}\\${bankName}\\${startDate}\\${endDate}`);
+      `${tickerId}\\${startDate}\\${endDate}`);
 
   }
 }
