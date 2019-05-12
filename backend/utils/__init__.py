@@ -13,4 +13,4 @@ participant = {'HSBC': ['C00019', 'B01490'],
                'BNP' : ['B01299', 'C00064']}
 
 URL = "http://www.hkexnews.hk/sdw/search/searchsdw.aspx"
-
+banks = ['HSBC', 'SC', 'CITI', 'GS', 'DB', 'ML', 'MACQ', 'CS', 'JPM', 'UBS', 'BNP']
