@@ -4,6 +4,7 @@
 import requests
 import copy
 from utils import participantList, participant, URL
+from utils.retry import retry
 from utils.utils import Utils
 from queue import Queue
 from bs4 import BeautifulSoup
@@ -16,20 +17,27 @@ q = Queue(maxsize=0)
 results = {}
 
 def putQueue(bankName, startTime, endTime):
+    count = 0
     for stockId in participant[bankName]:
         results[stockId] = {}
         for day in Utils.getDatesBetweenStartEnd(startTime, endTime):
             q.put((stockId, day))
+            count += 1
+    return min(50, count) 
 
 def crawlThread(tickerID, bankName, startTime, endTime):
     global results
-    putQueue(bankName, startTime, endTime)
+    num_threads = putQueue(bankName, startTime, endTime)
     payload = getPayLoad()
-    for stockId in participant[bankName]:
-        for day in Utils.getDatesBetweenStartEnd(startTime, endTime):
-            process = Thread(target=crawl, args=[q, tickerID, results, payload])
-            process.setDaemon(True)
-            process.start()
+#    for stockId in participant[bankName]:
+#        for day in Utils.getDatesBetweenStartEnd(startTime, endTime):
+#            process = Thread(target=crawl, args=[q, tickerID, results, payload])
+#            process.setDaemon(True)
+#            process.start()
+    for i in range(num_threads):
+        process = Thread(target=crawl, args=[q, tickerID, results, payload])
+        process.setDaemon(True)
+        process.start()
     q.join()
     resultsOut = copy.deepcopy(results)
     results = {}
@@ -86,6 +94,7 @@ def getPayLoad():
                     "txtSelPartID": ""}
         return payload
 
+@retry(Exception, tries=2)
 def getDataFromHkExchange(date, stockCode, ccassParticipantId, results, payload):
     results[ccassParticipantId][date] = {}
     payload["txtShareholdingDate"] = date
