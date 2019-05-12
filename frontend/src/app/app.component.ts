@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Chart } from 'chart.js';
+import { Chart, ChartOptions } from 'chart.js';
 import { DataService } from './data.service';
 import { Data } from './Data';
 
@@ -19,6 +19,13 @@ export class AppComponent {
   chart2 = [];
   chart3 = [];
   chart4 = [];
+  chart5 = [];
+  chart6 = [];
+  chart7 = [];
+  chart8 = [];
+  chart9 = [];
+  chart10 = [];
+  chart11 = [];
   date = [];
   banks = ['HSBC', 'SC', 'CITI', 'GS', 'DB', 'ML', 'MACQ', 'CS', 'JPM', 'UBS', 'BNP'];
   shareholding = [];
@@ -36,27 +43,41 @@ export class AppComponent {
     this.shareholding.push(y.shareholding);
         });
 	this.chart1 = new Chart('canvas', {
-        type: 'line',
+	type: 'line',
+	animationEnabled: true,
         data: {
           labels: this.date,
           datasets: [
-            {
+	  {
+	      label: 'HSBC',
               data: this.shareholding,
               borderColor: '#3cba9f',
-              fill: false
+	      fill: false,
+	      type: 'line',
+	      pointRadius: 0,
+	      borderWidth: 2,
+	      fill: false,
             }
           ]
         },
-        options: {
+	options: {
+	responsive: true,
           legend: {
-            display: false
+            display: true
           },
           scales: {
-            xAxes: [{
-              display: true
+	  xAxes: [{
+	      display: true,
+	      ticks: {
+			source: 'data',
+			autoSkip: true
+	    }
             }],
             yAxes: [{
-              display: true
+	    scaleLabel: {
+	    	display: true,
+		labelString: 'Shareholding'
+		}
             }],
           }
         }
@@ -75,6 +96,7 @@ export class AppComponent {
           labels: this.date,
           datasets: [
             {
+	      label: 'SC',
               data: this.shareholding,
               borderColor: '#3cba9f',
               fill: false
@@ -83,7 +105,7 @@ export class AppComponent {
         },
         options: {
           legend: {
-            display: false
+            display: true
           },
           scales: {
             xAxes: [{
@@ -108,6 +130,7 @@ this.date = [];
           labels: this.date,
           datasets: [
             {
+              label: 'CITI',
               data: this.shareholding,
               borderColor: '#3cba9f',
               fill: false
@@ -116,7 +139,147 @@ this.date = [];
         },
         options: {
           legend: {
-            display: false
+            display: true
+          },
+          scales: {
+            xAxes: [{
+              display: true
+            }],
+            yAxes: [{
+              display: true
+            }],
+          }
+        }
+      });
+    this.date = [];
+    this.shareholding = [];
+    result[3].GS.forEach(y => {
+    this.date.push(y.date);
+    this.shareholding.push(y.shareholding);
+
+    console.log(this.shareholding);
+        });
+	this.chart4 = new Chart('canvas3', {
+        type: 'line',
+        data: {
+          labels: this.date,
+          datasets: [
+            { 
+              label: 'GS',
+              data: this.shareholding,
+              borderColor: '#3cba9f',
+              fill: false
+            }
+          ]
+        },
+        options: {
+          legend: {
+            display: true
+          },
+          scales: {
+            xAxes: [{
+              display: true
+            }],
+            yAxes: [{
+              display: true
+            }],
+          }
+        }
+      });
+
+    this.date = [];
+    this.shareholding = [];
+    result[4].DB.forEach(y => {
+    this.date.push(y.date);
+    this.shareholding.push(y.shareholding);
+    console.log(this.shareholding);
+        });
+	this.chart5 = new Chart('canvas4', {
+        type: 'line',
+        data: {
+          labels: this.date,
+          datasets: [
+            {
+              label: 'DB',
+	      data: this.shareholding,
+              borderColor: '#3cba9f',
+              fill: false
+            }
+          ]
+        },
+        options: {
+          legend: {
+            display: true
+          },
+          scales: {
+            xAxes: [{
+              display: true
+            }],
+            yAxes: [{
+              display: true
+            }],
+          }
+        }
+      });
+
+this.date = [];
+    this.shareholding = [];
+    result[5].ML.forEach(y => {
+    this.date.push(y.date);
+    this.shareholding.push(y.shareholding);
+    console.log(this.shareholding);
+        });
+	this.chart6 = new Chart('canvas5', {
+        type: 'line',
+        data: {
+          labels: this.date,
+          datasets: [
+            {
+              label: 'ML',
+	      data: this.shareholding,
+              borderColor: '#3cba9f',
+              fill: false
+            }
+          ]
+        },
+        options: {
+          legend: {
+            display: true
+          },
+          scales: {
+            xAxes: [{
+              display: true
+            }],
+            yAxes: [{
+              display: true
+            }],
+          }
+        }
+      });
+
+this.date = [];
+    this.shareholding = [];
+    result[6].MACQ.forEach(y => {
+    this.date.push(y.date);
+    this.shareholding.push(y.shareholding);
+    console.log(this.shareholding);
+        });
+	this.chart7 = new Chart('canvas6', {
+        type: 'line',
+        data: {
+          labels: this.date,
+          datasets: [
+            {
+              label: 'MACQ',
+	      data: this.shareholding,
+              borderColor: '#3cba9f',
+              fill: false
+            }
+          ]
+        },
+        options: {
+          legend: {
+            display: true
           },
           scales: {
             xAxes: [{
@@ -130,19 +293,19 @@ this.date = [];
       });
 this.date = [];
     this.shareholding = [];
-   result[3].GS.forEach(y => {
+    result[7].CS.forEach(y => {
     this.date.push(y.date);
     this.shareholding.push(y.shareholding);
-    console.log("SC");
     console.log(this.shareholding);
         });
-	this.chart4 = new Chart('canvas3', {
+	this.chart8 = new Chart('canvas7', {
         type: 'line',
         data: {
           labels: this.date,
           datasets: [
             {
-              data: this.shareholding,
+              label: 'CS',
+	      data: this.shareholding,
               borderColor: '#3cba9f',
               fill: false
             }
@@ -150,7 +313,110 @@ this.date = [];
         },
         options: {
           legend: {
-            display: false
+            display: true
+          },
+          scales: {
+            xAxes: [{
+              display: true
+            }],
+            yAxes: [{
+              display: true
+            }],
+          }
+        }
+      });
+this.date = [];
+    this.shareholding = [];
+    result[8].JPM.forEach(y => {
+    this.date.push(y.date);
+    this.shareholding.push(y.shareholding);
+    console.log(this.shareholding);
+        });
+	this.chart9 = new Chart('canvas8', {
+        type: 'line',
+        data: {
+          labels: this.date,
+          datasets: [
+            {
+              label: 'JPM',
+	      data: this.shareholding,
+              borderColor: '#3cba9f',
+              fill: false
+            }
+          ]
+        },
+        options: {
+          legend: {
+            display: true
+          },
+          scales: {
+            xAxes: [{
+              display: true
+            }],
+            yAxes: [{
+              display: true
+            }],
+          }
+        }
+      });
+
+this.date = [];
+    this.shareholding = [];
+    result[9].UBS.forEach(y => {
+    this.date.push(y.date);
+    this.shareholding.push(y.shareholding);
+    console.log(this.shareholding);
+        });
+	this.chart10 = new Chart('canvas9', {
+        type: 'line',
+        data: {
+          labels: this.date,
+          datasets: [
+            {
+              label: 'JPM',
+	      data: this.shareholding,
+              borderColor: '#3cba9f',
+              fill: false
+            }
+          ]
+        },
+        options: {
+          legend: {
+            display: true
+          },
+          scales: {
+            xAxes: [{
+              display: true
+            }],
+            yAxes: [{
+              display: true
+            }],
+          }
+        }
+      });
+this.date = [];
+    this.shareholding = [];
+    result[10].BNP.forEach(y => {
+    this.date.push(y.date);
+    this.shareholding.push(y.shareholding);
+    console.log(this.shareholding);
+        });
+	this.chart11 = new Chart('canvas10', {
+        type: 'line',
+        data: {
+          labels: this.date,
+          datasets: [
+            {
+              label: 'JPM',
+	      data: this.shareholding,
+              borderColor: '#3cba9f',
+              fill: false
+            }
+          ]
+        },
+        options: {
+          legend: {
+            display: true
           },
           scales: {
             xAxes: [{
